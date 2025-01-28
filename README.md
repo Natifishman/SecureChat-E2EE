@@ -5,7 +5,7 @@ Here's a **professional and structured README** for your **End-to-End Encrypted 
 # 🔐 Secure End-to-End Encrypted Messaging System (E2EE)
 
 ![Language](https://img.shields.io/badge/language-Python-blue.svg)
-![Security](https://img.shields.io/badge/encryption-RSA%202048%20%7C%20AES%20256%20%7C%20PBKDF2%20SHA--256-green.svg)
+![Security](https://img.shields.io/badge/encryption-RSA%202048%20%7C%20AES%20256%20%7C%20PBKDF2-green.svg)
 
 ## 📖 Overview
 
