@@ -1,7 +1,3 @@
-Here's a **professional and structured README** for your **End-to-End Encrypted Messaging System (E2EE)** on GitHub. It includes **an overview, features, installation, usage, and security details** to make it clear and accessible.
-
----
-
 # 🔐 Secure End-to-End Encrypted Messaging System (E2EE)
 
 ![Language](https://img.shields.io/badge/language-Python-blue.svg)
@@ -161,6 +157,3 @@ Contributions are welcome! Please:
 ## 📝 License
 This project is for educational purposes and does not guarantee real-world security.
 Developed by **Natanel Fishman**  
----
-
-This **README** is optimized for **GitHub** and makes it **easy to understand, install, and contribute** to your **secure messaging project**! 🚀 Let me know if you want modifications! 😊
