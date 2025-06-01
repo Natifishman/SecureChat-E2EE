@@ -6,7 +6,7 @@
 
 ## 📖 Overview
 
-This project is an **End-to-End Encrypted (E2EE) messaging system** developed for **Maman 16**. It enables secure communication with strong cryptographic measures, ensuring **confidentiality, integrity, and authentication**.
+This project is an **End-to-End Encrypted (E2EE) messaging system** developed for **Final project**. It enables secure communication with strong cryptographic measures, ensuring **confidentiality, integrity, and authentication**.
 
 ## 🎯 Features
 
