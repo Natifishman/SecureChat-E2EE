@@ -101,7 +101,7 @@ class SecureServer:
             data = client_socket.recv(1024).decode()
             request = json.loads(data)
 
-            # טיפול בבקשת מפתח ציבורי
+            # Handle public key request
             if 'type' in request and request['type'] == 'get_public_key':
                 phone = request['phone']
                 public_key = self.get_public_key(phone)
@@ -113,7 +113,7 @@ class SecureServer:
                 client_socket.sendall(json.dumps(response).encode())
                 return
 
-            # טיפול ברישום/התחברות רגילה
+            # Handle registration/normal login
             phone = request['phone']
             print(f"Client {address} connected with phone {phone}")
 
@@ -165,7 +165,7 @@ class SecureServer:
         try:
             verification_code = self.generate_verification_code()
 
-            # שליחת הקוד ללקוח
+            # Send code to client
             client_socket.sendall(json.dumps({
                 'verification_code': verification_code
             }).encode())

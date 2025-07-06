@@ -57,19 +57,19 @@ class SecureClient:
     def request_public_key(self, phone: str) -> bool:
         """Request public key from server."""
         try:
-            # שליחת בקשה למפתח ציבורי
+            # Send request for public key
             request = {
                 'type': 'get_public_key',
                 'phone': phone
             }
             self.socket.sendall(json.dumps(request).encode())
 
-            # קבלת תשובה מהשרת
+            # Receive response from server
             response = self.socket.recv(4096).decode()
             data = json.loads(response)
 
             if data.get('exists', False):
-                # שמירת המפתח הציבורי לקובץ
+                # Save public key to file
                 with open(f"{phone}_public_key.pem", "wb") as f:
                     f.write(data['public_key'].encode())
                 return True
@@ -187,7 +187,7 @@ class SecureClient:
             self.socket.connect((self.host, self.port))
             print(f"Connected to server at {self.host}:{self.port}")
 
-            # בדיקה אם המשתמש קיים בשרת
+            # Check if user exists on server
             try:
                 print("\n=== Checking User Existence ===")
                 # Send request for public key
@@ -207,7 +207,7 @@ class SecureClient:
                 if user_exists:
                     print("✓ User found on server")
                     print("✓ Received public key from server")
-                    # שמירת המפתח הציבורי לקובץ
+                    # Save public key to file
                     with open(f"{self.phone}_public_key.pem", "wb") as f:
                         f.write(data['public_key'].encode())
                     print(f"✓ Saved public key to {self.phone}_public_key.pem")
@@ -223,12 +223,12 @@ class SecureClient:
                 print("==================")
                 user_exists = False
 
-            # יצירת חיבור חדש לשרת אחרי בדיקת הקיום
+            # Create new connection to server after existence check
             self.socket.close()
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.connect((self.host, self.port))
 
-            # שליחת מספר הטלפון לשרת
+            # Send phone number to server
             self.socket.sendall(json.dumps({'phone': self.phone}).encode())
             print(f"Sent phone number: {self.phone}")
 
@@ -274,7 +274,7 @@ class SecureClient:
             print("\n=== Starting Security Registration Process ===")
             print("Waiting for verification code...")
 
-            # קבלת קוד האימות מהשרת
+            # Receive verification code from server
             initial_response = self.socket.recv(1024).decode()
             server_data = json.loads(initial_response)
             verification_code_from_server = server_data.get('verification_code')
@@ -382,7 +382,7 @@ class SecureClient:
             print("\n=== Encrypted Message Structure ===")
             print(f"- Sender ID: {message['sender_id']}")
             print(f"- Recipient ID: {message['recipient_id']}")
-            # מציג רק חלק מההצפנה
+            # Show only part of the encryption
             print(f"- Encrypted Content (hex): {message['encrypted_content'][:32]}...")
             print(f"- Encrypted AES Key (hex): {message['encrypted_aes_key'][:32]}...")
             print(f"- Digital Signature (hex): {message['signature'][:32]}...")
@@ -430,7 +430,7 @@ class SecureClient:
 
                 message = json.loads(message_data)
 
-                # ניקוי השורה הנוכחית אם יש קלט פתוח
+                # Clear current line if there's open input
                 print("\033[2K\r", end="")
 
                 # Handle delivery receipt
@@ -445,7 +445,7 @@ class SecureClient:
                 print(f"- Encrypted AES Key (hex): {message['encrypted_aes_key'][:32]}...")
                 print(f"- Digital Signature (hex): {message['signature'][:32]}...")
                 print(f"- Timestamp: {message['timestamp']}")
-                print("- Message Type: message")  # קבוע במקום לקחת מההודעה
+                print("- Message Type: message")  # Fixed instead of taking from message
                 print("=== Starting Decryption Process ===")
 
                 sender_id = message['sender_id']
@@ -488,7 +488,7 @@ class SecureClient:
                 # Send delivery receipt
                 self.send_delivery_receipt(message['timestamp'], sender_id)
 
-                # הדפסה מחדש של הבקשה לקלט אם צריך
+                # Reprint input prompt if needed
                 print("\nEnter recipient phone number (or 'quit' to exit): ", end="", flush=True)
 
             except Exception as e:
@@ -508,7 +508,7 @@ class SecureClient:
 
 def main():
     """Main function to run the client."""
-    while True:  # לולאה שתאפשר למשתמש לנסות שוב
+    while True:  # Loop that allows user to try again
         try:
             phone = input("Enter your phone number: ")
             client = SecureClient(phone)
@@ -522,7 +522,7 @@ def main():
                 message = input("Enter message: ")
                 client.send_message(recipient, message)
 
-            break  # יוצא מהלולאה החיצונית אם המשתמש בחר לצאת
+            break  # Exit outer loop if user chose to quit
 
         except Exception as e:
             print(f"\nError: {e}")
