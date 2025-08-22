@@ -1,10 +1,11 @@
-# 🔐 Secure End-to-End Encrypted Messaging System (E2EE)
-
-![Language](https://img.shields.io/badge/language-Python-blue.svg)
-![Security](https://img.shields.io/badge/encryption-RSA%202048%20%7C%20AES%20256%20%7C%20PBKDF2-green.svg)
-![Final Grade](https://img.shields.io/badge/grade-100-brightgreen.svg)
-![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)
-![License](https://img.shields.io/badge/license-Educational-red.svg)
+![App Showcase](assets/securechat-readme.png)
+<p align="center">
+  <img src="https://img.shields.io/badge/language-Python-blue.svg">
+  <img src="https://img.shields.io/badge/encryption-RSA%202048%20%7C%20AES%20256%20%7C%20PBKDF2-green.svg">
+  <img src="https://img.shields.io/badge/grade-100-brightgreen.svg">
+  <img src="https://img.shields.io/badge/python-3.8%2B-blue.svg">
+  <img src="https://img.shields.io/badge/license-Educational-red.svg">
+</p>
 
 ## 📋 Table of Contents
 - [📖 Overview](#-overview)
